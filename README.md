@@ -54,7 +54,7 @@ Inspirado en el paper de Pérez, Gangnet y Blake, esta técnica resuelve un sist
 ## 📂 Estructura del Proyecto
 
 ```
-tarea/
+IntensamenteEnUTEC/
 ├── main.py             # Ejecución principal del flujo
 ├── utilidades.py       # Funciones de carga, selección y guardado
 ├── mask.py             # Construcción de la máscara poligonal
@@ -63,8 +63,7 @@ tarea/
 ├── requirements.txt    # Lista de dependencias
 ├── output/             # Imágenes output  
 ├── source/             # Imágenes fuente (Opcional)
-├── target/             # Imágenes destino (Opcional)
-└──
+└──target/              # Imágenes destino (Opcional)
 ```
 
 ---
@@ -76,7 +75,7 @@ tarea/
 https://github.com/usuario/poisson-blending.git
 cd poisson-blending
 
-# Crea entorno virtual 
+# Crea entorno virtual (opcional)
 python -m venv venv
 source venv/bin/activate  # o venv\Scripts\activate en Windows
 
@@ -94,24 +93,30 @@ python main.py
 1. Se abre un diálogo para elegir imagen fuente.
 2. Se dibuja con clics una máscara poligonal.
 3. Se elige la imagen destino y se selecciona el punto central donde pegar.
-4. Se ejecuta el blending (modo normal:1 o mixed:2).
-5. Se guarda y muestra la imagen final en la carpeta ´output´
+4. Se ejecuta el blending (modo normal o mixed).
+5. Se guarda y muestra la imagen final.
 
 ---
 
-## 📷 Ejemplos Visuales
+## 📷 Ejemplo Visual
 
-### Resultado (modo normal)
-
-| Imagen Fuente                     | Imagen Destino                   | Resultado Final                        |
-|-----------------------------------|----------------------------------|----------------------------------------|
-| ![](IntensamenteEnUTEC/source/src_sadness.jpg) | ![](IntensamenteEnUTEC/target/trg_ejemplo.jpg) | ![](IntensamenteEnUTEC/output/resultado_poisson_normal.png) |
-
+| Imagen Fuente                     | Imagen Destino                    | Resultado Final                                |
+| --------------------------------- | --------------------------------- | ---------------------------------------------- |
+| ![](tarea/source/src_sadness.jpg) | ![](tarea/target/trg_ejemplo.jpg) | ![](tarea/output/resultado_poisson_normal.png) |
 
 ---
 
 ## 📚 Referencias
 
-* Pérez, P., Gangnet, M., & Blake, A. (2003). [Poisson Image Editing](https://www.cs.ubc.ca/~fedorov/courses/cpsc533b/Papers/poisson.pdf)
-* [https://scikit-image.org/](https://scikit-image.org/)
-* [https://github.com/pyamg/pyamg](https://github.com/pyamg/pyamg)
+* *Pérez, P., Gangnet, M., & Blake, A.* (2003). [Poisson Image Editing](https://dl.acm.org/doi/10.1145/1201775.882269)
+* *Brown University - CS129 Resultados Visuales:* [https://cs.brown.edu/courses/cs129/results/proj2/taox/](https://cs.brown.edu/courses/cs129/results/proj2/taox/)
+* *CMU Graphics Lecture 7 (2017):* [https://graphics.cs.cmu.edu/courses/15-463/2017\_fall/lectures/lecture7.pdf](https://graphics.cs.cmu.edu/courses/15-463/2017_fall/lectures/lecture7.pdf)
+* *Zuha & Agha (Weebly Project Report):* [https://zuhaagha.weebly.com/uploads/3/1/9/5/31957175/projectreport-poisson-14100196-14100103.pdf](https://zuhaagha.weebly.com/uploads/3/1/9/5/31957175/projectreport-poisson-14100196-14100103.pdf)
+* *Documentación de Scikit:* [https://scikit-image.org/](https://scikit-image.org/)
+* *Documentación de Pyamg:* [https://github.com/pyamg/pyamg](https://github.com/pyamg/pyamg)
+
+---
+
+## 📃 Licencia
+
+Este proyecto ha sido desarrollado con fines educativos. Puedes reutilizarlo, modificarlo y distribuirlo siempre que reconozcas la autoría original.
