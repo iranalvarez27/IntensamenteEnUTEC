@@ -72,7 +72,7 @@ IntensamenteEnUTEC/
 
 ```bash
 # Clona el repositorio
-[https://github.com/usuario/poisson-blending.git](https://github.com/iranalvarez27/IntensamenteEnUTEC.git)
+https://github.com/iranalvarez27/IntensamenteEnUTEC.git
 cd poisson-blending
 
 # Crea entorno virtual (opcional)
