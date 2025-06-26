@@ -114,9 +114,3 @@ python main.py
 * *Zuha & Agha (Weebly Project Report):* [https://zuhaagha.weebly.com/uploads/3/1/9/5/31957175/projectreport-poisson-14100196-14100103.pdf](https://zuhaagha.weebly.com/uploads/3/1/9/5/31957175/projectreport-poisson-14100196-14100103.pdf)
 * *Documentación de Scikit:* [https://scikit-image.org/](https://scikit-image.org/)
 * *Documentación de Pyamg:* [https://github.com/pyamg/pyamg](https://github.com/pyamg/pyamg)
-
----
-
-## 📃 Licencia
-
-Este proyecto ha sido desarrollado con fines educativos. Puedes reutilizarlo, modificarlo y distribuirlo siempre que reconozcas la autoría original.
