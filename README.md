@@ -72,7 +72,7 @@ IntensamenteEnUTEC/
 
 ```bash
 # Clona el repositorio
-https://github.com/usuario/poisson-blending.git
+[https://github.com/usuario/poisson-blending.git](https://github.com/iranalvarez27/IntensamenteEnUTEC.git)
 cd poisson-blending
 
 # Crea entorno virtual (opcional)
@@ -102,7 +102,7 @@ python main.py
 
 | Imagen Fuente                     | Imagen Destino                    | Resultado Final                                |
 | --------------------------------- | --------------------------------- | ---------------------------------------------- |
-| ![](tarea/source/src_sadness.jpg) | ![](tarea/target/trg_ejemplo.jpg) | ![](tarea/output/resultado_poisson_normal.png) |
+| ![](source/src_sadness.jpg) | ![](target/trg_ejemplo.jpg) | ![](output/resultado_poisson_normal.png) |
 
 ---
 
