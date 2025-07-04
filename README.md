@@ -70,6 +70,8 @@ IntensamenteEnUTEC/
 
 ## 🔧 Instalación
 
+Usando venv:
+
 ```bash
 # Clona el repositorio
 https://github.com/iranalvarez27/IntensamenteEnUTEC.git
@@ -81,8 +83,28 @@ source venv/bin/activate  # o venv\Scripts\activate en Windows
 
 # Instala las dependencias
 pip install -r requirements.txt
+```
 
-# Ejecuta el programa
+Usando conda:
+```bash
+# Clona el repositorio
+https://github.com/iranalvarez27/IntensamenteEnUTEC.git
+cd poisson-blending
+
+# Crear el entorno virtual
+conda create environment.yml
+
+# Activar el entorno
+conda activate blending-intensamente
+
+# Instalar dependencias
+pip install -r requirements.txt
+
+```
+
+Después de la instalación se puede ejecutar el programa usando
+
+```bash
 python main.py
 ```
 

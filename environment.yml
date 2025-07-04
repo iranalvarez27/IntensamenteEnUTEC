@@ -1,0 +1,9 @@
+name: blending-intensamente
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+- python
+- pip
+- pip:
+  - pip-tools
