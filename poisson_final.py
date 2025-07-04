@@ -181,15 +181,48 @@ def recortar_region(imagen, esquina, forma):
     h, w = forma
     return imagen[i:i+h, j:j+w].copy()
 
+
+'''
+Esta funcion realiza alpha blending entre la imagen fuente y la región de destino.
+Idea: si alpha=1, solo se copia la fuente tal cual (sin transparencia)
+      si alpha=0, solo se muestra la imagen destino tal cual
+      si alpha=0.5, se mezcla al 50% entre ambas (solo queda el fondo)
+'''
+def mezcla_alpha(canales_src, canales_dst, mascara, esquina, alpha):
+    resultado = []
+    for c in range(3):
+        fuente = canales_src[c].astype(np.float64)
+        destino = canales_dst[c].copy().astype(np.float64)
+
+        i, j = esquina
+        h, w = fuente.shape
+
+        # Extraigo la region destino donde se coloca la fuente
+        destino_region = destino[i:i+h, j:j+w]
+
+        # Alpha blending solo en la region de la mascara
+        blended_region = destino_region.copy()
+        blended_region[mascara == 1]=(alpha*fuente[mascara==1]+(1-alpha)*destino_region[mascara==1])
+
+        destino[i:i+h, j:j+w] = blended_region
+        resultado.append(destino)
+    return resultado
+
+
 # -------------------- MAIN --------------------
 
 def main():
-    # Preguntamos al usuario que modo desea usar
     print("Selecciona el modo de blending:")
     print("1. Normal Poisson")
     print("2. Mixed Gradients")
-    opcion = input("Ingresa 1 o 2: ").strip()
-    modo = 'mixed' if opcion == '2' else 'normal'
+    print("3. Alpha Blending")
+    opcion = input("Ingresa 1, 2 o 3: ").strip()
+    if opcion == '2':
+        modo = 'mixed'
+    elif opcion == '3':
+        modo = 'alpha'
+    else:
+        modo = 'normal'
     print(f"Modo seleccionado: {modo.upper()}")
 
     ruta_src = seleccionar_imagen("Imagen fuente")
@@ -210,7 +243,11 @@ def main():
         max(0, esquina[1] - mascara.shape[1] // 2)
     )
 
-    resultado = mezcla_poisson(canales_src_crop, canales_dst, mascara, esquina, modo=modo)
+    if modo == 'alpha': 
+        alpha = float(input("Ingrese el valor de alpha (entre 0 y 1): ").strip())
+        resultado = mezcla_alpha(canales_src_crop, canales_dst, mascara, esquina, alpha=alpha)
+    else: 
+        resultado = mezcla_poisson(canales_src_crop, canales_dst, mascara, esquina, modo=modo)
     mostrar_y_guardar(resultado, f"resultado_poisson_{modo}")
 
 if __name__ == "__main__":
