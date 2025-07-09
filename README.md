@@ -4,7 +4,7 @@
 
 * Libra Vento
 * Irán Alvarez
-* Julissa Lapa
+* Julisa Lapa
 * Adrián Sandoval
 
 ---
