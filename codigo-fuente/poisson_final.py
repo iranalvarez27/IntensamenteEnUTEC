@@ -233,10 +233,6 @@ def main():
     canales_src = abrir_imagen_rgb(ruta_src)
     mascara, fila_min, col_min = obtener_mascara(ruta_src)
 
-    plt.imshow(mascara, cmap='gray')
-    plt.title("Máscara seleccionada")
-    plt.show()
-
     canales_src_crop = tuple(
         c[fila_min:fila_min+mascara.shape[0], col_min:col_min+mascara.shape[1]] for c in canales_src
     )
