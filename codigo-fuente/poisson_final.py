@@ -7,6 +7,8 @@ from skimage.draw import polygon
 import matplotlib.pyplot as plt
 from scipy.sparse import lil_matrix
 from pyamg import ruge_stuben_solver
+import os
+from pathlib import Path
 
 # -------------------- UTILIDADES --------------------
 
@@ -225,15 +227,23 @@ def main():
         modo = 'normal'
     print(f"Modo seleccionado: {modo.upper()}")
 
+    print("Selecciona imagen fuente:")
     ruta_src = seleccionar_imagen("Imagen fuente")
+    print(f"Imagen '{Path(ruta_src).stem}' seleccionada")
     canales_src = abrir_imagen_rgb(ruta_src)
     mascara, fila_min, col_min = obtener_mascara(ruta_src)
+
+    plt.imshow(mascara, cmap='gray')
+    plt.title("Máscara seleccionada")
+    plt.show()
 
     canales_src_crop = tuple(
         c[fila_min:fila_min+mascara.shape[0], col_min:col_min+mascara.shape[1]] for c in canales_src
     )
 
+    print("Selecciona imagen destino:")
     ruta_dst = seleccionar_imagen("Imagen destino")
+    print(f"Imagen '{Path(ruta_dst).stem}' seleccionada")
     canales_dst = abrir_imagen_rgb(ruta_dst)
     imagen_gris = abrir_imagen_grises(ruta_dst)
     esquina = seleccionar_posicion(imagen_gris)
@@ -244,11 +254,18 @@ def main():
     )
 
     if modo == 'alpha': 
-        alpha = float(input("Ingrese el valor de alpha (entre 0 y 1): ").strip())
+        alpha = -1
+        while alpha < 0 or alpha > 1:
+            alpha = float(input("Ingrese el valor de alpha (entre 0 y 1): ").strip())
         resultado = mezcla_alpha(canales_src_crop, canales_dst, mascara, esquina, alpha=alpha)
     else: 
         resultado = mezcla_poisson(canales_src_crop, canales_dst, mascara, esquina, modo=modo)
-    mostrar_y_guardar(resultado, f"resultado_poisson_{modo}")
+    carpeta_output = os.path.join(os.getcwd(),"output")
+    nombre_salida = f"resultado_poisson_{modo}_{Path(ruta_src).stem}_{Path(ruta_dst).stem}"
+    ruta_salida = os.path.join(carpeta_output, nombre_salida)
+    mostrar_y_guardar(resultado, ruta_salida)
+    print(f"{nombre_salida} creado.")
+
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,7 @@
 import numpy as np
 from PIL import Image
 import os
+from pathlib import Path
 import tkinter as tk
 from tkinter import filedialog
 
@@ -104,8 +105,10 @@ def main():
     root.withdraw()
     print("Selecciona imagen fuente")
     ruta_src = filedialog.askopenfilename(title="Selecciona imagen fuente")
+    print(f"Imagen '{Path(ruta_src).stem}' seleccionada")
     print("Selecciona imagen objetivo")
     ruta_tgt = filedialog.askopenfilename(title="Selecciona imagen objetivo")
+    print(f"Imagen '{Path(ruta_tgt).stem}' seleccionada")
 
     if not ruta_src or not ruta_tgt:
         print("Error: no se seleccionaron imagenes")
@@ -115,12 +118,12 @@ def main():
     img_tgt = cargar_imagen(ruta_tgt)
     
     img_resultado=color_transfer(img_src, img_tgt)
-    carpeta_output=os.path.join(os.getcwd(),"output")
+    carpeta_output = os.path.join(os.getcwd(),"output")
     
     if not os.path.exists(carpeta_output):
         os.makedirs(carpeta_output)
     
-    nombre_salida = "color_transfer_imagen.jpg"
+    nombre_salida = f"color_transfer_{Path(ruta_src).stem}.jpg"
     ruta_salida = os.path.join(carpeta_output, nombre_salida)
 
     guardar_imagen(img_resultado, ruta_salida)
