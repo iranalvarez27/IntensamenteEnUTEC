@@ -36,6 +36,6 @@ IntensamenteEnUTEC/
 ├── diapositivas/         # Presentación con diapositivas
 ├── documentacion/        # Documentación técnica
 ├── documento-en-latex/   # Documentación al estilo "capítulo de libro"
-├── pagina-web/           # Página web 
-└── video-y-fotos/        # Evidencia del funcionamiento
+├── pagina-web/           # HTML con la descripción del proyecto y resultados
+└── video-y-fotos/        # Resultados finales del proyecto
 ```
