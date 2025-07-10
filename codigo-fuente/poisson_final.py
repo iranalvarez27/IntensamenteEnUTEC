@@ -62,12 +62,46 @@ def mostrar_y_guardar(imagenes, nombre):
 Esta funcion permite al usuario dibujar un poligono sobre la imagen para 
 obtener sus vertices como un array de coordenadas.
 '''
-def obtener_mascara(ruta):
+def obtener_mascara(ruta, tolerancia_cierre=10):
     imagen = abrir_imagen_grises(ruta)
     plt.figure("Selecciona el polígono")
     plt.imshow(imagen, cmap='gray')
-    puntos = np.asarray(plt.ginput(0, timeout=-1))
+    puntos = []
+
+    while True:
+        punto = plt.ginput(1, timeout=-1)
+        if not punto:
+            raise RuntimeError("Se cerró la ventana de selección de máscara sin haber terminado.")
+        punto = punto[0]
+
+        # primer punto
+        if not puntos:
+            puntos.append(punto)
+            plt.scatter(punto[0], punto[1], c='red', marker='x')
+            plt.draw()
+            continue
+
+        # último punto
+        distancia = np.linalg.norm(np.array(punto) - np.array(puntos[0]))
+        if distancia < tolerancia_cierre and len(puntos) > 2:
+            puntos.append(puntos[0])
+            x_vals = [p[0] for p in puntos]
+            y_vals = [p[1] for p in puntos]
+            plt.plot(x_vals, y_vals, 'r-')
+            plt.scatter(x_vals, y_vals, c='red', marker='x')
+            plt.draw()
+            break
+
+        # puntos intermedios
+        puntos.append(punto)
+        x_vals = [p[0] for p in puntos]
+        y_vals = [p[1] for p in puntos]
+        plt.plot(x_vals, y_vals, 'r-')
+        plt.scatter(x_vals, y_vals, c='red', marker='x')
+        plt.draw()
+
     plt.close()
+    puntos = np.asarray(puntos)
 
     puntos = np.fliplr(puntos)
     rr, cc = polygon(puntos[:, 0], puntos[:, 1], imagen.shape)
