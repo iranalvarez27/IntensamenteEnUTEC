@@ -44,6 +44,8 @@ IntensamenteEnUTEC/
 └── video-y-fotos/        # Resultados finales del proyecto
 ```
 
+---
+
 ## 📚 Referencias
 
 - A. B. Patrick Pérez, Michel Gangnet, “Poisson image editing,” 2003. (Online). Available: [https://www.cs.jhu.edu/~misha/Fall07/Papers/Perez03.pdf](https://www.cs.jhu.edu/~misha/Fall07/Papers/Perez03.pdf)
