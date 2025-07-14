@@ -1,21 +1,413 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intensamente UTEC</title>
-  <meta name="description"
-    content="Un proyecto aplicando metodologías de Computación Gráfica para crear experiencias audiovisuales únicas en el entorno universitario." />
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-  <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Intensamente en UTEC</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6fc;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #69c0ff, #9254de);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      background: #fff;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .tab-button {
+      border: none;
+      background-color: #e6f7ff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tab-button:hover,
+    .tab-button.active {
+      background-color: #69c0ff;
+      color: white;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fade 0.5s ease-in;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .img-responsive {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: 2rem auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      width: 260px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    table {
+      width: 100%;
+      margin-top: 2rem;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background: #e6f7ff;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .gallery-column {
+      flex: 1;
+      min-width: 280px;
+      max-width: 33%;
+    }
+
+    .gallery-column h4 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .gallery-box {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      background: #fff;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+
+    .github-link {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .github-link a {
+      background: #24292e;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .github-link a:hover {
+      background: #3b3f44;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #fafafa;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
 </head>
-
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
-</body>
+  <header>
+    <h1>Intensamente en UTEC</h1>
+    <p>Explora emociones con computación gráfica</p>
+  </header>
 
+  <nav>
+    <button class="tab-button active" data-tab="inicio">Inicio</button>
+    <button class="tab-button" data-tab="tecnicas">Técnicas</button>
+    <button class="tab-button" data-tab="galeria">Galería</button>
+    <button class="tab-button" data-tab="video">Cortometraje</button>
+  </nav>
+
+  <main>
+    <!-- INICIO -->
+    <section id="inicio" class="tab-content active">
+      <h2>¿Qué es Intensamente en UTEC?</h2>
+      <p style="font-size: 1.1rem;">Inspirado en la película <strong>Inside Out</strong>, este proyecto representa visualmente cómo las emociones acompañan a los estudiantes universitarios. 💭🎓</p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; align-items: center; justify-content: center;">
+        <img src="portada.png" alt="UTEC Intensamente" class="img-responsive" style="max-width: 350px;" />
+
+        <div style="max-width: 450px;">
+          <h3>🎭 Tus emociones también estudian contigo:</h3>
+          <ul style="line-height: 1.8; font-size: 1rem; list-style: none; padding-left: 0;">
+            <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;">
+              <img src="emociones/joy.png" alt="Alegría" style="width: 40px; height: 40px; border-radius: 50%;" />
+              <span><strong>Alegría:</strong> cuando apruebas ese curso imposible.</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;">
+              <img src="emociones/miedo.jpeg" alt="Miedo" style="width: 40px; height: 40px; border-radius: 50%;" />
+              <span><strong>Miedo:</strong> antes del oral con el profesor más temido.</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;">
+              <img src="emociones/enojo.png" alt="Ira" style="width: 40px; height: 40px; border-radius: 50%;" />
+              <span><strong>Ira:</strong> cuando no guarda tu código antes del crash.</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;">
+              <img src="emociones/sadness.png" alt="Tristeza" style="width: 40px; height: 40px; border-radius: 50%;" />
+              <span><strong>Tristeza:</strong> cuando fallas aunque lo diste todo.</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;">
+              <img src="emociones/ansiedad.png" alt="Ansiedad" style="width: 40px; height: 40px; border-radius: 50%;" />
+              <span><strong>Ansiedad:</strong> antes del proyecto final.</span>
+            </li>
+          </ul>
+
+          <blockquote style="margin-top: 1.5rem; font-style: italic; color: #666;">“Las emociones no son interrupciones: son compañeras de viaje.”</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- TÉCNICAS -->
+    <section id="tecnicas" class="tab-content">
+      <h2>Técnicas Gráficas Utilizadas</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Poisson Blending</h3>
+          <p>Inserta objetos respetando bordes y texturas, generando una fusión natural con el fondo.</p>
+        </div>
+        <div class="card">
+          <h3>Color Transfer</h3>
+          <p>Iguala el estilo cromático entre imágenes para mantener coherencia visual.</p>
+        </div>
+        <div class="card">
+          <h3>Alpha Blending</h3>
+          <p>Aplica transparencia progresiva para fusionar elementos visuales.</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:3rem;">📘 Ficha Técnica Resumida</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Técnica</th>
+            <th>Fórmula</th>
+            <th>Aplicación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Poisson Blending</td>
+            <td><code>∇u ≈ ∇f</code> dentro de la máscara</td>
+            <td>Inserción visual natural</td>
+          </tr>
+          <tr>
+            <td>Color Transfer</td>
+            <td><code>S' = (S - μS)/σS * σT + μT</code></td>
+            <td>Homogeneización de color</td>
+          </tr>
+          <tr>
+            <td>Alpha Blending</td>
+            <td><code>I = αF + (1−α)B</code></td>
+            <td>Transparencia visual</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="tab-content">
+      <h2>🎨 Galería de Resultados</h2>
+      <p>Comparación visual de entrada, fondo y blending aplicado:</p>
+      <div class="gallery">
+        <!-- SOURCE -->
+        <div class="gallery-column">
+          <h4>Imagen Source</h4>
+          <div class="gallery-box"><img src="galeria/fuente/source_joy01.png" alt="Imagen source" /></div>
+          <div class="gallery-box"><img src="galeria/fuente/source_joy02.png" alt="Imagen source" /></div>
+          <div class="gallery-box"><img src="galeria/fuente/source_joy02.png" alt="Imagen source" /></div>
+        
+          <div class="gallery-box"><img src="galeria/fuente/source_sadness01.jpg" alt="Imagen source" /></div>
+          <div class="gallery-box"><img src="galeria/fuente/source_sadness02.png" alt="Imagen source" /></div>
+          <div class="gallery-box"><img src="galeria/fuente/source_sadness03.png" alt="Imagen source" /></div>
+
+          <div class="gallery-box"><img src="galeria/fuente/source_fear01.png" alt="Imagen source" /></div>
+          <div class="gallery-box"><img src="galeria/fuente/source_fear02.png" alt="Imagen source" /></div>
+          <div class="gallery-box"><img src="galeria/fuente/source_fear01.png" alt="Imagen source" /></div>
+
+          <div class="gallery-box"><img src="galeria/fuente/source_anxiety01.png" alt="Imagen source" /></div>
+          <div class="gallery-box"><img src="galeria/fuente/source_anxiety01.png" alt="Imagen source" /></div>
+          <div class="gallery-box"><img src="galeria/fuente/source_anxiety01.png" alt="Imagen source" /></div>
+
+          <div class="gallery-box"><img src="galeria/fuente/source_anger01.png" alt="Imagen source" /></div>
+          <div class="gallery-box"><img src="galeria/fuente/source_anger02.png" alt="Imagen source" /></div>
+          <div class="gallery-box"><img src="galeria/fuente/source_anger03.png" alt="Imagen source" /></div>
+        </div>
+
+        <!-- TARGET -->
+        <div class="gallery-column">
+          <h4>Imagen Target</h4>
+          <div class="gallery-box"><img src="galeria/destino/target_joy01.jpg" alt="Imagen target" /></div>
+          <div class="gallery-box"><img src="galeria/destino/target_joy02.jpg" alt="Imagen target" /></div>
+          <div class="gallery-box"><img src="galeria/destino/target_joy03.jpg" alt="Imagen target" /></div>
+
+          <div class="gallery-box"><img src="galeria/destino/target_sadness01.jpg" alt="Imagen target" /></div>
+          <div class="gallery-box"><img src="galeria/destino/target_sadness02.jpg" alt="Imagen target" /></div>
+          <div class="gallery-box"><img src="galeria/destino/target_sadness03.jpg" alt="Imagen target" /></div>
+        
+          <div class="gallery-box"><img src="galeria/destino/target_fear01.jpg" alt="Imagen target" /></div>
+          <div class="gallery-box"><img src="galeria/destino/target_fear02.jpg" alt="Imagen target" /></div>
+          <div class="gallery-box"><img src="galeria/destino/target_fear03.jpg" alt="Imagen target" /></div>
+        
+          <div class="gallery-box"><img src="galeria/destino/target_anxiety01.jpg" alt="Imagen target" /></div>
+          <div class="gallery-box"><img src="galeria/destino/target_fear01.jpg" alt="Imagen target" /></div>
+          <div class="gallery-box"><img src="galeria/destino/target_anxiety03.jpg" alt="Imagen target" /></div>
+        
+          <div class="gallery-box"><img src="galeria/destino/target_anger01.jpg" alt="Imagen target" /></div>
+          <div class="gallery-box"><img src="galeria/destino/target_anger02.jpg" alt="Imagen target" /></div>
+          <div class="gallery-box"><img src="galeria/destino/target_anger03.jpg" alt="Imagen target" /></div>
+        
+        
+        
+        </div>
+
+        <!-- OUTPUT -->
+        <div class="gallery-column">
+          <h4>Resultado Final</h4>
+          <div class="gallery-box"><img src="galeria/output/joy_01.jpg" alt="Resultado blending" /></div>
+          <div class="gallery-box"><img src="galeria/output/joy_02.jpg" alt="Resultado blending" /></div>
+          <div class="gallery-box"><img src="galeria/output/joy_03.png" alt="Resultado blending" /></div>
+
+          <div class="gallery-box"><img src="galeria/output/sadness_01.png" alt="Resultado blending" /></div>
+          <div class="gallery-box"><img src="galeria/output/sadness_02.png" alt="Resultado blending" /></div>
+          <div class="gallery-box"><img src="galeria/output/sadness_03.png" alt="Resultado blending" /></div>
+
+          <div class="gallery-box"><img src="galeria/output/fear_01.png" alt="Resultado blending" /></div>
+          <div class="gallery-box"><img src="galeria/output/fear_02.png" alt="Resultado blending" /></div>
+          <div class="gallery-box"><img src="galeria/output/fear_03.png" alt="Resultado blending" /></div>
+
+          <div class="gallery-box"><img src="galeria/output/anxiety_01.png" alt="Resultado blending" /></div>
+          <div class="gallery-box"><img src="galeria/output/anxiety_02.png" alt="Resultado blending" /></div>
+          <div class="gallery-box"><img src="galeria/output/anxiety_03.png" alt="Resultado blending" /></div>
+
+          <div class="gallery-box"><img src="galeria/output/anger_01.png" alt="Resultado blending" /></div>
+          <div class="gallery-box"><img src="galeria/output/anger_02.png" alt="Resultado blending" /></div>
+          <div class="gallery-box"><img src="galeria/output/anger_03.png" alt="Resultado blending" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section id="video" class="tab-content">
+      <h2>🎬 Cortometraje Final</h2>
+      <p>Animaciones, blending y emociones en una sola historia visual.</p>
+      <video controls style="max-width:100%; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <source src="video/cortometraje.mp4" type="video/mp4" />
+        Tu navegador no soporta video.
+      </video>
+
+      <div class="github-link">
+        <h3>🔗 Código fuente del proyecto</h3>
+        <a href="https://github.com/iranalvarez27/IntensamenteEnUTEC" target="_blank">Ver en GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 UTEC · Computación Gráfica · Grupo 4
+  </footer>
+
+  <script>
+    // Tabs
+    const buttons = document.querySelectorAll(".tab-button");
+    const tabs = document.querySelectorAll(".tab-content");
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        buttons.forEach(btn => btn.classList.remove("active"));
+        tabs.forEach(tab => tab.classList.remove("active"));
+        button.classList.add("active");
+        document.getElementById(button.dataset.tab).classList.add("active");
+      });
+    });
+  </script>
+</body>
 </html>
