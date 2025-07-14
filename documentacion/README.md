@@ -25,9 +25,7 @@ A continuación, se explican las funciones clave que componen la lógica del sis
 * **Alpha Blending:**
   La función `mezcla_alpha()` implementa blending clásico basado en un valor $\alpha \in [0, 1]$ ingresado por el usuario. La región definida por la máscara se combina como:
 
-  $$
-  I = \alpha F + (1 - \alpha) B
-  $$
+  [![\\ I = \alpha F + (1 - \alpha) B](https://latex.codecogs.com/svg.latex?%5C%5C%20I%20%3D%20%5Calpha%20F%20%2B%20(1%20-%20%5Calpha)%20B)](#_)
 
   donde $F$ es la imagen fuente y $B$ la imagen de fondo. Si $\alpha = 1$, se copia completamente la fuente; si $\alpha = 0$, se mantiene el fondo; y si $\alpha = 0.5$, se obtiene una mezcla uniforme.
 
